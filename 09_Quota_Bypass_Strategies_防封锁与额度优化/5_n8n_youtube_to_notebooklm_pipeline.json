@@ -1,0 +1,83 @@
+{
+  "name": "YouTube to NotebookLM Auto-Pipeline",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 1,
+              "unit": "hours"
+            }
+          ]
+        },
+        "channelId": "UCbxgjB0vT_Qk4e8g14Fz7Gw", 
+        "events": [
+          "videoUploaded"
+        ]
+      },
+      "id": "e2f07094-118e-4a7b-a481-6789a71db3b8",
+      "name": "YouTube Trigger (Naval/Musk)",
+      "type": "n8n-nodes-base.youTubeTrigger",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "command": "=notebooklm source add --notebook 5c191e45-b7e1-4660-8b1f-2b4a4ddbbb5c --type youtube https://www.youtube.com/watch?v={{$json.id.videoId}}"
+      },
+      "id": "2bc9e273-0941-4712-b138-0db4811a4cf1",
+      "name": "Inject into NotebookLM CLI",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        500,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "command": "=notebooklm generate audio --notebook 5c191e45-b7e1-4660-8b1f-2b4a4ddbbb5c"
+      },
+      "id": "d047b198-4b71-4646-9904-8b12f6c04fdf",
+      "name": "Trigger Audio Generation",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        800,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "YouTube Trigger (Naval/Musk)": {
+      "main": [
+        [
+          {
+            "node": "Inject into NotebookLM CLI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Inject into NotebookLM CLI": {
+      "main": [
+        [
+          {
+            "node": "Trigger Audio Generation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "purpose": "Initial 10,000 CNY affordability screen. Templates only; replace with real symbols and data before trading.",
+  "candidates": [
+    {
+      "symbol": "A_SHARE_LOW_PRICE_ETF_TEMPLATE",
+      "bars": "data/sample_low_price_etf_ohlcv.csv",
+      "profile": "Recommended starting category: low-price A-share ETF/fund with 100-unit board lot",
+      "notes": "Best fit for 10,000 CNY because board-lot notional and stop risk can be small. Replace template with a real liquid ETF/fund symbol."
+    },
+    {
+      "symbol": "US_STOCK_OR_ETF_1_SHARE_TEMPLATE",
+      "bars": "data/sample_low_price_etf_ohlcv.csv",
+      "profile": "Secondary category: US stock/ETF in whole shares or broker-supported fractional shares",
+      "notes": "Use only if broker rules, currency conversion, and day-trading restrictions are understood."
+    },
+    {
+      "symbol": "SAMPLE_FUT",
+      "bars": "data/sample_ohlcv.csv",
+      "profile": "High-leverage futures-like sample",
+      "notes": "Included to demonstrate rejection when stop risk exceeds 10,000 CNY risk budget."
+    },
+    {
+      "symbol": "CME_MICRO_INDEX_TEMPLATE",
+      "bars": "data/sample_ohlcv.csv",
+      "profile": "Futures category: CME micro index template",
+      "notes": "Usually too large for strict 0.5% risk unless stop is very tight. Paper-test first and add FX conversion before live use."
+    }
+  ]
+}
+

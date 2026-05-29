@@ -1,0 +1,31 @@
+{
+  "account": {
+    "capital": 273.0,
+    "currency": "USD"
+  },
+  "risk": {
+    "risk_per_trade_fraction": 0.01,
+    "max_margin_fraction": 1.0,
+    "max_daily_loss_fraction": 0.02,
+    "max_total_drawdown_fraction": 0.08,
+    "commission_per_contract": 0.35,
+    "slippage_ticks": 1.0,
+    "allow_short": false
+  },
+  "strategy": {
+    "entry_lookback": 10,
+    "exit_lookback": 5,
+    "atr_period": 5,
+    "atr_stop_multiple": 2.0,
+    "trend_sma_period": 10,
+    "take_profit_r_multiple": 2.0
+  },
+  "execution": {
+    "mode": "manual_ticket_or_future_ibkr_paper",
+    "require_stop": true,
+    "require_human_review": true,
+    "live_broker_execution_enabled": false,
+    "recommended_asset_scope": "US stocks/ETFs only; no futures, no options, no margin shorting"
+  }
+}
+

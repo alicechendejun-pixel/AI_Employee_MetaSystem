@@ -1,0 +1,2 @@
+# This MVP currently uses only the Python standard library.
+# Python 3.11+ is recommended.

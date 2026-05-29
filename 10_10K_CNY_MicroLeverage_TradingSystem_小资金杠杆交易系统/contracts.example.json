@@ -1,0 +1,42 @@
+{
+  "SAMPLE_FUT": {
+    "symbol": "SAMPLE_FUT",
+    "description": "Synthetic futures contract for tests and dry runs. Replace with broker-verified specs before trading.",
+    "currency": "CNY",
+    "multiplier": 10.0,
+    "tick_size": 1.0,
+    "margin_rate": 0.12,
+    "min_qty": 1,
+    "lot_step": 1
+  },
+  "A_SHARE_LOW_PRICE_ETF_TEMPLATE": {
+    "symbol": "A_SHARE_LOW_PRICE_ETF_TEMPLATE",
+    "description": "Template for low-price A-share ETF/fund board-lot testing. One qty equals one 100-unit board lot. Replace with real exchange symbol before trading.",
+    "currency": "CNY",
+    "multiplier": 100.0,
+    "tick_size": 0.001,
+    "margin_rate": 1.0,
+    "min_qty": 1,
+    "lot_step": 1
+  },
+  "US_STOCK_OR_ETF_1_SHARE_TEMPLATE": {
+    "symbol": "US_STOCK_OR_ETF_1_SHARE_TEMPLATE",
+    "description": "Template for whole-share US stock/ETF testing. Use swing/manual review; broker fractional support is separate.",
+    "currency": "USD",
+    "multiplier": 1.0,
+    "tick_size": 0.01,
+    "margin_rate": 1.0,
+    "min_qty": 1,
+    "lot_step": 1
+  },
+  "CME_MICRO_INDEX_TEMPLATE": {
+    "symbol": "CME_MICRO_INDEX_TEMPLATE",
+    "description": "Template for CME micro index futures. Replace with exact contract, FX conversion, and broker margin before trading.",
+    "currency": "USD",
+    "multiplier": 5.0,
+    "tick_size": 0.25,
+    "margin_rate": 0.08,
+    "min_qty": 1,
+    "lot_step": 1
+  }
+}

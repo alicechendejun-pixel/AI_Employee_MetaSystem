@@ -1,0 +1,74 @@
+{
+  "summary": {
+    "candidate_count": 4,
+    "ready_count": 2,
+    "decision": "TRADE_REVIEW_ALLOWED",
+    "message": "Only READY candidates may proceed to manual ticket review."
+  },
+  "candidates": [
+    {
+      "symbol": "A_SHARE_LOW_PRICE_ETF_TEMPLATE",
+      "profile": "Recommended starting category: low-price A-share ETF/fund with 100-unit board lot",
+      "status": "READY",
+      "reject_reason": null,
+      "side": "LONG",
+      "qty": 2,
+      "entry": 1.12,
+      "stop": 1.04,
+      "take_profit": 1.28,
+      "risk_budget": 50.0,
+      "risk_per_contract": 20.2,
+      "margin_required": 224.0,
+      "reason": "close 1.1200 broke previous 10-bar high 1.1100",
+      "notes": "Best fit for 10,000 CNY because board-lot notional and stop risk can be small. Replace template with a real liquid ETF/fund symbol."
+    },
+    {
+      "symbol": "US_STOCK_OR_ETF_1_SHARE_TEMPLATE",
+      "profile": "Secondary category: US stock/ETF in whole shares or broker-supported fractional shares",
+      "status": "READY",
+      "reject_reason": null,
+      "side": "LONG",
+      "qty": 4,
+      "entry": 1.12,
+      "stop": 1.04,
+      "take_profit": 1.28,
+      "risk_budget": 50.0,
+      "risk_per_contract": 12.1,
+      "margin_required": 4.48,
+      "reason": "close 1.1200 broke previous 10-bar high 1.1100",
+      "notes": "Use only if broker rules, currency conversion, and day-trading restrictions are understood."
+    },
+    {
+      "symbol": "CME_MICRO_INDEX_TEMPLATE",
+      "profile": "Futures category: CME micro index template",
+      "status": "REJECTED",
+      "reject_reason": "risk_budget_too_small",
+      "side": "LONG",
+      "qty": 0,
+      "entry": 112.0,
+      "stop": 104.0,
+      "take_profit": 128.0,
+      "risk_budget": 50.0,
+      "risk_per_contract": 54.5,
+      "margin_required": 0.0,
+      "reason": "close 112.0000 broke previous 10-bar high 111.0000",
+      "notes": "Usually too large for strict 0.5% risk unless stop is very tight. Paper-test first and add FX conversion before live use."
+    },
+    {
+      "symbol": "SAMPLE_FUT",
+      "profile": "High-leverage futures-like sample",
+      "status": "REJECTED",
+      "reject_reason": "risk_budget_too_small",
+      "side": "LONG",
+      "qty": 0,
+      "entry": 112.0,
+      "stop": 104.0,
+      "take_profit": 128.0,
+      "risk_budget": 50.0,
+      "risk_per_contract": 112.0,
+      "margin_required": 0.0,
+      "reason": "close 112.0000 broke previous 10-bar high 111.0000",
+      "notes": "Included to demonstrate rejection when stop risk exceeds 10,000 CNY risk budget."
+    }
+  ]
+}

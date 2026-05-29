@@ -1,0 +1,41 @@
+# CrewAI 标准 yaml task 配置（与 tasks.py 等价）
+
+data_collection:
+  description: >
+    为目标 {ticker} 采集 5 类数据：报价、财报、新闻、SEC 文件、社交情绪。
+    输出严格 JSON 到 {output_dir}/raw_data.json。
+  expected_output: 符合 schema 的 raw_data.json
+  agent: data_agent
+
+cross_analysis:
+  description: >
+    基于 raw_data，对 {ticker} 做 3 路交叉分析：
+    FinRobot 研报 / TradingAgents 辩论 / AutoHedge 风控仓位。
+    然后 meta 分析共识 + 分歧。
+  expected_output: cross_analysis.json
+  agent: analyst_agent
+  context: [data_collection]
+
+narrative_design:
+  description: 写一个有传播力的金融叙事。1 反直觉点 + 3 支撑论点 + 1 金句。
+  expected_output: hook.md
+  agent: narrative_agent
+  context: [cross_analysis]
+
+content_production:
+  description: 自动产出 4 种内容：公众号长文 / 小红书 / 视频脚本 / 简报。
+  expected_output: 4 个 markdown 文件
+  agent: content_agent
+  context: [narrative_design]
+
+distribution:
+  description: 分发到飞书 / 公众号 / 小红书 / YouTube。
+  expected_output: distribution_log.json
+  agent: distribution_agent
+  context: [content_production]
+
+monetization_tracking:
+  description: 记录变现追踪表 + 下周选题建议。
+  expected_output: monetization_report.md
+  agent: monetization_agent
+  context: [data_collection, cross_analysis, narrative_design, content_production, distribution]

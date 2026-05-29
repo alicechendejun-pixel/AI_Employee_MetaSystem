@@ -1,0 +1,176 @@
+{
+  "name": "Quota Bypass - 429 Auto Sleep & Retry",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "6a978f13-68d2-43f1-9457-37b567d4e567",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        220,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "YOUR_CLAUDE_API_KEY"
+            },
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "claude-3-5-sonnet-20240620"
+            },
+            {
+              "name": "max_tokens",
+              "value": "1024"
+            },
+            {
+              "name": "messages",
+              "value": "=[{\"role\":\"user\", \"content\":\"{{ $json.prompt }}\"}]"
+            }
+          ]
+        },
+        "options": {
+          "allowUnauthorizedCerts": false,
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "id": "d820f18d-f952-4467-b50a-f1d2df8f9213",
+      "name": "Call Claude API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        460,
+        280
+      ],
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $response.statusCode }}",
+              "operation": "equal",
+              "value2": 429
+            }
+          ]
+        }
+      },
+      "id": "7823f9b2-c128-4034-b258-3d12d45c6131",
+      "name": "If 429 Too Many Requests?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        680,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 3.5,
+        "unit": "hours"
+      },
+      "id": "f581cd11-2e21-4f1e-927b-23ab183b0f58",
+      "name": "Wait (Sleep for 3.5 hrs)",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        920,
+        400
+      ],
+      "webhookId": "099a4c8c-1e62-4215-9988-82db37119e7a"
+    },
+    {
+      "parameters": {},
+      "id": "e843f540-c081-4b72-b88d-7fb4c11458e2",
+      "name": "Process Result",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        680,
+        200
+      ]
+    }
+  ],
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Call Claude API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Claude API": {
+      "main": [
+        [
+          {
+            "node": "Process Result",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If 429 Too Many Requests?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If 429 Too Many Requests?": {
+      "main": [
+        [
+          {
+            "node": "Wait (Sleep for 3.5 hrs)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait (Sleep for 3.5 hrs)": {
+      "main": [
+        [
+          {
+            "node": "Call Claude API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

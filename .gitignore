@@ -1,0 +1,23 @@
+# Environments
+.env
+venv/
+node_modules/
+__pycache__/
+*.pyc
+
+# Data & Logs
+*.jsonl
+*.log
+*.sqlite
+*.db
+temp/
+tmp/
+*.csv
+
+# Local Configuration & Payloads
+Latest_Task_Payload.md
+workspace/
+
+# OS generated files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,12 @@
+{
+  "YOUR_SYMBOL": {
+    "symbol": "YOUR_SYMBOL",
+    "description": "Replace with exact broker tradable symbol and contract description before trading.",
+    "currency": "CNY",
+    "multiplier": 1.0,
+    "tick_size": 0.01,
+    "margin_rate": 1.0,
+    "min_qty": 1
+  }
+}
+

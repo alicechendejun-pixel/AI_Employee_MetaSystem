@@ -1,0 +1,129 @@
+app:
+  description: "自动降级模型路由器：优先调用 Claude，若触发 429 或额度耗尽，自动回退到 Gemini 或其他大额度模型。用于防封锁。"
+  icon: 🔀
+  icon_background: "#FFEAD5"
+  mode: workflow
+  name: "Quota Bypass Router (Claude -> Gemini)"
+workflow:
+  features:
+    file_upload:
+      image:
+        enabled: false
+  graph:
+    edges:
+    - data:
+        sourceType: llm
+        targetType: end
+        fallbackType: llm_fallback
+      id: edge-claude-to-end
+      source: claude-node
+      target: end-node
+      type: custom
+    - data:
+        sourceType: llm
+        targetType: llm
+        isFallback: true
+      id: edge-claude-fallback-gemini
+      source: claude-node
+      target: gemini-node
+      type: custom
+    - data:
+        sourceType: llm
+        targetType: end
+      id: edge-gemini-to-end
+      source: gemini-node
+      target: end-node
+      type: custom
+    - data:
+        sourceType: start
+        targetType: llm
+      id: edge-start-to-claude
+      source: start-node
+      target: claude-node
+      type: custom
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables:
+        - label: user_input
+          max_length: 256
+          options: []
+          required: true
+          type: paragraph
+          variable: user_input
+      id: start-node
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      type: custom
+    - data:
+        context:
+          enabled: false
+        desc: '主模型：Claude 3.5 Sonnet'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: claude-3-5-sonnet-20240620
+          provider: anthropic
+        prompt_template:
+          - role: system
+            text: 您是一个负责第一性原理分析的顶级架构师。
+          - role: user
+            text: "{{#start-node.user_input#}}"
+        selected: false
+        title: 顶级架构师 (Claude)
+        type: llm
+      id: claude-node
+      position:
+        x: 380
+        y: 282
+      type: custom
+    - data:
+        context:
+          enabled: false
+        desc: '备用模型：Gemini 1.5 Flash (额度耗尽时自动触发)'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-1.5-flash
+          provider: google
+        prompt_template:
+          - role: system
+            text: 您是一个负责第一性原理分析的顶级架构师。(Fallback)
+          - role: user
+            text: "{{#start-node.user_input#}}"
+        selected: false
+        title: 降级回退模型 (Gemini)
+        type: llm
+      id: gemini-node
+      position:
+        x: 380
+        y: 500
+      type: custom
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - claude-node
+          - text
+          variable: claude_output
+        - value_selector:
+          - gemini-node
+          - text
+          variable: gemini_output
+        selected: false
+        title: End
+        type: end
+      id: end-node
+      position:
+        x: 680
+        y: 282
+      type: custom

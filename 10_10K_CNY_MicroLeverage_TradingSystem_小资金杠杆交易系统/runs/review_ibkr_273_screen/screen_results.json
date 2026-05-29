@@ -1,0 +1,42 @@
+{
+  "summary": {
+    "candidate_count": 2,
+    "ready_count": 1,
+    "decision": "TRADE_REVIEW_ALLOWED",
+    "message": "Only READY candidates may proceed to manual ticket review."
+  },
+  "candidates": [
+    {
+      "symbol": "US_STOCK_OR_ETF_1_SHARE_TEMPLATE",
+      "profile": "Recommended: US stock/ETF whole-share small position",
+      "status": "READY",
+      "reject_reason": null,
+      "side": "LONG",
+      "qty": 3,
+      "entry": 1.12,
+      "stop": 1.04,
+      "take_profit": 1.28,
+      "risk_budget": 2.73,
+      "risk_per_contract": 0.8,
+      "margin_required": 3.36,
+      "reason": "close 1.1200 broke previous 10-bar high 1.1100",
+      "notes": "Works only if the real instrument's spread, stop distance, and commissions fit the USD risk budget."
+    },
+    {
+      "symbol": "SAMPLE_FUT",
+      "profile": "Not recommended: futures-like high leverage",
+      "status": "REJECTED",
+      "reject_reason": "risk_budget_too_small",
+      "side": "LONG",
+      "qty": 0,
+      "entry": 112.0,
+      "stop": 104.0,
+      "take_profit": 128.0,
+      "risk_budget": 2.73,
+      "risk_per_contract": 100.7,
+      "margin_required": 0.0,
+      "reason": "close 112.0000 broke previous 10-bar high 111.0000",
+      "notes": "Included to show rejection for this account size."
+    }
+  ]
+}

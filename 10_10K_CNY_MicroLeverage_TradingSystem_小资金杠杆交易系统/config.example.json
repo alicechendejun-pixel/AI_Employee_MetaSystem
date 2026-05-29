@@ -1,0 +1,29 @@
+{
+  "account": {
+    "capital": 10000.0,
+    "currency": "CNY"
+  },
+  "risk": {
+    "risk_per_trade_fraction": 0.005,
+    "max_margin_fraction": 0.35,
+    "max_daily_loss_fraction": 0.015,
+    "max_total_drawdown_fraction": 0.08,
+    "commission_per_contract": 6.0,
+    "slippage_ticks": 1.0,
+    "allow_short": true
+  },
+  "strategy": {
+    "entry_lookback": 10,
+    "exit_lookback": 5,
+    "atr_period": 5,
+    "atr_stop_multiple": 2.0,
+    "trend_sma_period": 10,
+    "take_profit_r_multiple": 2.0
+  },
+  "execution": {
+    "mode": "manual_ticket",
+    "require_stop": true,
+    "require_human_review": true
+  }
+}
+

@@ -1,0 +1,18 @@
+{
+  "purpose": "IBKR 273 USD small-account starting screen. Templates only; replace with real US stock/ETF symbols and bars before trading.",
+  "candidates": [
+    {
+      "symbol": "US_STOCK_OR_ETF_1_SHARE_TEMPLATE",
+      "bars": "data/sample_low_price_etf_ohlcv.csv",
+      "profile": "Recommended: US stock/ETF whole-share small position",
+      "notes": "Works only if the real instrument's spread, stop distance, and commissions fit the USD risk budget."
+    },
+    {
+      "symbol": "SAMPLE_FUT",
+      "bars": "data/sample_ohlcv.csv",
+      "profile": "Not recommended: futures-like high leverage",
+      "notes": "Included to show rejection for this account size."
+    }
+  ]
+}
+
