@@ -1,0 +1,10 @@
+FlowiseAI/Flowise
+livekit/livekit
+FoundationAgents/OpenManus
+suno-ai/bark
+langchain-ai/langchain
+langchain-ai/langgraph
+meta-llama/llama3
+mckaywrigley/chatbot-ui
+openai/openai-realtime-agents
+openclaw/openclaw

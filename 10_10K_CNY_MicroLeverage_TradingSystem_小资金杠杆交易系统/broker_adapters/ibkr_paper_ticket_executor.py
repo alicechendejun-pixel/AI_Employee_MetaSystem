@@ -68,6 +68,8 @@ def main():
     parent.action = "BUY" if ticket["side"] == "LONG" else "SELL"
     parent.orderType = "MKT"
     parent.totalQuantity = ticket["qty"]
+    parent.eTradeOnly = False
+    parent.firmQuoteOnly = False
     parent.transmit = False
 
     stop = Order()
@@ -76,6 +78,8 @@ def main():
     stop.orderType = "STP"
     stop.auxPrice = ticket["stop"]
     stop.totalQuantity = ticket["qty"]
+    stop.eTradeOnly = False
+    stop.firmQuoteOnly = False
     stop.parentId = app.next_order_id
     stop.transmit = True
 
