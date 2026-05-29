@@ -1,0 +1,54 @@
+{
+  "status": "READY",
+  "reject_reason": null,
+  "symbol": "TSLA",
+  "signal_date": "2026-02-20",
+  "side": "LONG",
+  "entry_reference": 112.0,
+  "stop": 104.0,
+  "take_profit": 128.0,
+  "qty": 25,
+  "parent_order": {
+    "action": "BUY",
+    "order_type": "LIMIT_OR_MARKET_AFTER_REVIEW",
+    "qty": 25,
+    "reference_price": 112.0
+  },
+  "protective_stop": {
+    "action": "SELL",
+    "order_type": "STOP",
+    "qty": 25,
+    "stop_price": 104.0
+  },
+  "take_profit_order": {
+    "action": "SELL",
+    "order_type": "LIMIT",
+    "qty": 25,
+    "limit_price": 128.0
+  },
+  "risk": {
+    "capital": 10000.0,
+    "risk_budget": 200.0,
+    "risk_per_contract": 8.0,
+    "margin_per_contract": 56.0,
+    "margin_required": 1400.0,
+    "max_margin_fraction": 0.35
+  },
+  "contract": {
+    "multiplier": 1.0,
+    "tick_size": 0.01,
+    "margin_rate": 0.5,
+    "min_qty": 1,
+    "lot_step": 1,
+    "currency": "USD",
+    "description": "Tesla Inc. - Paper Trading Test"
+  },
+  "review_checklist": [
+    "Broker contract symbol exactly matches this ticket.",
+    "Multiplier, tick size, commission, and margin match broker screen.",
+    "Stop order is entered at the same time as the entry order.",
+    "No trade is placed if daily loss or drawdown kill switch is active.",
+    "No trade is placed during limit-up/limit-down, illiquid, or abnormal spread conditions."
+  ],
+  "reason": "close 112.0000 broke previous 10-bar high 111.0000"
+}

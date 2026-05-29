@@ -53,3 +53,9 @@ result = REJECTED / risk_budget_too_small
 The paper-demo config can be used to verify READY ticket generation.
 The recommended universe screen can be used to verify that low-unit instruments
 are compatible with 10,000 CNY while larger futures-like risk is rejected.
+
+- broker_adapters/ibkr_paper_ticket_executor.py 已实现
+  - 可读取 latest_ticket.json 并尝试发送 Bracket Order (Entry + Stop)
+  - 支持 Paper Trading 环境
+  - 对 SAMPLE_FUT 等测试合约给出明确提示
+

@@ -1,0 +1,54 @@
+{
+  "status": "READY",
+  "reject_reason": null,
+  "symbol": "SAMPLE_FUT",
+  "signal_date": "2026-02-20",
+  "side": "LONG",
+  "entry_reference": 112.0,
+  "stop": 104.0,
+  "take_profit": 128.0,
+  "qty": 2,
+  "parent_order": {
+    "action": "BUY",
+    "order_type": "LIMIT_OR_MARKET_AFTER_REVIEW",
+    "qty": 2,
+    "reference_price": 112.0
+  },
+  "protective_stop": {
+    "action": "SELL",
+    "order_type": "STOP",
+    "qty": 2,
+    "stop_price": 104.0
+  },
+  "take_profit_order": {
+    "action": "SELL",
+    "order_type": "LIMIT",
+    "qty": 2,
+    "limit_price": 128.0
+  },
+  "risk": {
+    "capital": 10000.0,
+    "risk_budget": 200.0,
+    "risk_per_contract": 80.0,
+    "margin_per_contract": 134.4,
+    "margin_required": 268.8,
+    "max_margin_fraction": 0.35
+  },
+  "contract": {
+    "multiplier": 10.0,
+    "tick_size": 1.0,
+    "margin_rate": 0.12,
+    "min_qty": 1,
+    "lot_step": 1,
+    "currency": "CNY",
+    "description": "Synthetic futures contract for tests and dry runs. Replace with broker-verified specs before trading."
+  },
+  "review_checklist": [
+    "Broker contract symbol exactly matches this ticket.",
+    "Multiplier, tick size, commission, and margin match broker screen.",
+    "Stop order is entered at the same time as the entry order.",
+    "No trade is placed if daily loss or drawdown kill switch is active.",
+    "No trade is placed during limit-up/limit-down, illiquid, or abnormal spread conditions."
+  ],
+  "reason": "close 112.0000 broke previous 10-bar high 111.0000"
+}
