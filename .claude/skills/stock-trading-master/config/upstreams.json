@@ -7,15 +7,34 @@
   },
   "upstreams": [
     {
-      "id": "china-stock-analysis",
+      "id": "a-share-analysis",
       "market": ["A-share"],
-      "repository": "https://github.com/sugarforever/01coder-agent-skills.git",
+      "repository": "https://github.com/nicepkg/ai-workflow.git",
       "preferred_paths": [
-        "skills/china-stock-analysis",
-        ".claude/skills/china-stock-analysis"
+        "workflows/stock-trader-workflow/.claude/skills/a-share-analysis"
       ],
-      "role": "A-share screening, company analysis, industry comparison and valuation",
+      "role": "A-share fundamentals, technicals, policy, capital flow and market-rule analysis",
       "required": true
+    },
+    {
+      "id": "a-share-screener",
+      "market": ["A-share"],
+      "repository": "https://github.com/nicepkg/ai-workflow.git",
+      "preferred_paths": [
+        "workflows/stock-trader-workflow/.claude/skills/a-share-screener"
+      ],
+      "role": "A-share fundamental and technical screening",
+      "required": false
+    },
+    {
+      "id": "akshare",
+      "market": ["A-share", "Hong Kong", "Futures", "Funds"],
+      "repository": "https://github.com/nicepkg/ai-workflow.git",
+      "preferred_paths": [
+        "workflows/stock-trader-workflow/.claude/skills/akshare"
+      ],
+      "role": "China-market data access through AkShare",
+      "required": false
     },
     {
       "id": "us-stock-analysis",
