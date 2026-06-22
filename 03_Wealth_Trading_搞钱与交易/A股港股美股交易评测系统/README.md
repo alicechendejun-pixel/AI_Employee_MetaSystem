@@ -1,4 +1,4 @@
-# Stock Trading Master System
+# A股港股美股交易评测系统
 
 统一的 A 股、港股、美股、深度尽调、策略回测和风险控制 Skill 系统。
 
@@ -33,7 +33,7 @@
 在本仓库根目录打开 PowerShell，执行：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File ".\03_Wealth_Trading_搞钱与交易\StockTradingMaster\scripts\install_upstreams.ps1"
+powershell -ExecutionPolicy Bypass -File ".\03_Wealth_Trading_搞钱与交易\A股港股美股交易评测系统\scripts\install_upstreams.ps1"
 ```
 
 第三方 Skill 镜像到：
@@ -45,7 +45,7 @@ powershell -ExecutionPolicy Bypass -File ".\03_Wealth_Trading_搞钱与交易\St
 上游仓库保存在：
 
 ```text
-03_Wealth_Trading_搞钱与交易/StockTradingMaster/vendor/
+03_Wealth_Trading_搞钱与交易/A股港股美股交易评测系统/vendor/
 ```
 
 ## 使用

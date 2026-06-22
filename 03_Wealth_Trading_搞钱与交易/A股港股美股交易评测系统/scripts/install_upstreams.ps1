@@ -6,7 +6,7 @@ if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
 }
 
 $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\..\..")).Path
-$vendorRoot = Join-Path $repoRoot "03_Wealth_Trading_搞钱与交易\StockTradingMaster\vendor"
+$vendorRoot = Join-Path $repoRoot "03_Wealth_Trading_搞钱与交易\A股港股美股交易评测系统\vendor"
 $skillRoot = Join-Path $repoRoot ".claude\skills\vendor"
 New-Item -ItemType Directory -Force $vendorRoot, $skillRoot | Out-Null
 
@@ -103,4 +103,4 @@ if ($missing.Count -gt 0) {
     throw "Required skills missing: $($missing -join ', ')"
 }
 
-Write-Host "Stock Trading Master installation complete. Live execution remains disabled." -ForegroundColor Cyan
+Write-Host "A股港股美股交易评测系统安装完成。实盘执行保持关闭。" -ForegroundColor Cyan
