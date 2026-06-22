@@ -1,0 +1,112 @@
+{
+  "system": {
+    "name": "Stock Trading Master System",
+    "version": "1.0.0",
+    "default_mode": "research_and_paper_trading",
+    "live_execution_enabled": false
+  },
+  "upstreams": [
+    {
+      "id": "a-share-analysis",
+      "market": ["A-share"],
+      "repository": "https://github.com/nicepkg/ai-workflow.git",
+      "preferred_paths": [
+        "workflows/stock-trader-workflow/.claude/skills/a-share-analysis"
+      ],
+      "role": "A-share fundamentals, technicals, policy, capital flow and market-rule analysis",
+      "required": true
+    },
+    {
+      "id": "a-share-screener",
+      "market": ["A-share"],
+      "repository": "https://github.com/nicepkg/ai-workflow.git",
+      "preferred_paths": [
+        "workflows/stock-trader-workflow/.claude/skills/a-share-screener"
+      ],
+      "role": "A-share fundamental and technical screening",
+      "required": false
+    },
+    {
+      "id": "akshare",
+      "market": ["A-share", "Hong Kong", "Futures", "Funds"],
+      "repository": "https://github.com/nicepkg/ai-workflow.git",
+      "preferred_paths": [
+        "workflows/stock-trader-workflow/.claude/skills/akshare"
+      ],
+      "role": "China-market data access through AkShare",
+      "required": false
+    },
+    {
+      "id": "us-stock-analysis",
+      "market": ["US"],
+      "repository": "https://github.com/tradermonty/claude-trading-skills.git",
+      "preferred_paths": ["skills/us-stock-analysis"],
+      "role": "US equity fundamental, technical, peer and valuation analysis",
+      "required": true
+    },
+    {
+      "id": "earnings-calendar",
+      "market": ["US"],
+      "repository": "https://github.com/tradermonty/claude-trading-skills.git",
+      "preferred_paths": ["skills/earnings-calendar"],
+      "role": "Upcoming earnings-event checks",
+      "required": false
+    },
+    {
+      "id": "institutional-flow-tracker",
+      "market": ["US"],
+      "repository": "https://github.com/tradermonty/claude-trading-skills.git",
+      "preferred_paths": ["skills/institutional-flow-tracker"],
+      "role": "13F ownership and institutional-flow analysis",
+      "required": false
+    },
+    {
+      "id": "options-strategy-advisor",
+      "market": ["US"],
+      "repository": "https://github.com/tradermonty/claude-trading-skills.git",
+      "preferred_paths": ["skills/options-strategy-advisor"],
+      "role": "Options structure and Greeks-aware scenario analysis",
+      "required": false
+    },
+    {
+      "id": "stock-question-refiner",
+      "market": ["A-share", "Hong Kong", "US"],
+      "repository": "https://github.com/liangdabiao/Claude-Code-Stock-Deep-Research-Agent.git",
+      "preferred_paths": [
+        "1.claude/skills/stock-question-refiner",
+        ".claude/skills/stock-question-refiner"
+      ],
+      "role": "Normalize investment questions into structured due-diligence briefs",
+      "required": true
+    },
+    {
+      "id": "stock-research-executor",
+      "market": ["A-share", "Hong Kong", "US"],
+      "repository": "https://github.com/liangdabiao/Claude-Code-Stock-Deep-Research-Agent.git",
+      "preferred_paths": [
+        "1.claude/skills/stock-research-executor",
+        ".claude/skills/stock-research-executor"
+      ],
+      "role": "Eight-phase institutional-style stock due diligence",
+      "required": true
+    },
+    {
+      "id": "backtesting-trading-strategies",
+      "market": ["A-share", "Hong Kong", "US", "Crypto"],
+      "repository": "https://github.com/jeremylongshore/claude-code-plugins-plus-skills.git",
+      "preferred_paths": [
+        "plugins/crypto/trading-strategy-backtester/skills/backtesting-trading-strategies"
+      ],
+      "role": "Rule-based strategy backtesting and performance validation",
+      "required": true
+    },
+    {
+      "id": "risk-manager",
+      "market": ["A-share", "Hong Kong", "US", "Portfolio"],
+      "repository": "https://github.com/sickn33/antigravity-awesome-skills.git",
+      "preferred_paths": ["skills/risk-manager"],
+      "role": "Portfolio risk, position sizing, stop, concentration and hedging veto layer",
+      "required": true
+    }
+  ]
+}
