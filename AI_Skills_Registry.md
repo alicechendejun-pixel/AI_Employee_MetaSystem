@@ -115,7 +115,6 @@
 - **描述**: 生态最全的 Agent 框架
 - **状态**: 已 Clone。⚠️ 未发现 requirements.txt (可能是 JS/Node 项目或不需要依赖)
 
-
 ## 500-AI-Agents-Projects
 - **分类**: 03_Wealth_Trading_搞钱与交易
 - **路径**: G:\我的云端硬盘\09-AI员工系统\03_Wealth_Trading_搞钱与交易\500-AI-Agents-Projects
@@ -127,3 +126,13 @@
 - **路径**: G:\我的云端硬盘\09-AI员工系统\08_System_Data_Engine_多智能体数据引擎\MetaGPT
 - **描述**: The Multi-Agent Framework. (外包搞钱与系统开发利器)
 - **状态**: 已 Clone。venv 创建完毕。⚠️ 注意：pip install 由于 Windows Long Path 限制中断，请在开启系统级长路径后重试。
+
+## StockTradingMaster
+- **分类**: 03_Wealth_Trading_搞钱与交易
+- **GitHub路径**: `.claude/skills/stock-trading-master/`
+- **本地模块路径**: `G:\我的云端硬盘\09-AI员工系统\03_Wealth_Trading_搞钱与交易\StockTradingMaster`
+- **描述**: 统一调度 A股、美股、八阶段深度尽调、策略回测和风险否决的股票交易研究系统。输出 GREEN / YELLOW / RED / DATA_BLOCKED，并保留信源与模块调用轨迹。
+- **状态**: ✅ 主控 Skill 已安装到 GitHub；上游 Skill 通过白名单 PowerShell 安装器同步到本地。
+- **核心指令**: `使用 stock-trading-master 分析 [股票代码/名称]，说明持有周期，并输出主逻辑、反方逻辑、关键价位、失效条件、风险预算和红黄绿灯。`
+- **安装命令**: `powershell -ExecutionPolicy Bypass -File ".\03_Wealth_Trading_搞钱与交易\StockTradingMaster\scripts\install_upstreams.ps1"`
+- **边界**: 默认只研究、模拟和纸面交易，不连接券商、不自动实盘下单。
