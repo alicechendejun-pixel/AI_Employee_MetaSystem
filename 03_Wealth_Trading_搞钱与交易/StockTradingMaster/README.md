@@ -2,24 +2,23 @@
 
 统一的 A 股、美股、深度尽调、策略回测和风险控制 Skill 系统。
 
-## 已集成模块
+## 已内置核心模块
 
 | 层级 | Skill | 用途 |
 |---|---|---|
 | A股市场适配 | `a-share-analysis` | 基本面、技术面、政策、资金流、A股交易规则 |
-| A股筛选 | `a-share-screener` | 基本面与技术条件筛选 |
-| A股数据 | `akshare` | A股、基金、期货等结构化数据接口 |
-| 美股市场适配 | `us-stock-analysis` | 美股基本面、估值、技术面、同行比较 |
-| 美股事件 | `earnings-calendar` | 财报日历 |
-| 机构资金 | `institutional-flow-tracker` | 13F与机构持仓变化 |
-| 期权分析 | `options-strategy-advisor` | Greeks与期权情景分析 |
-| 问题标准化 | `stock-question-refiner` | 把自然语言问题转成尽调任务 |
+| 美股市场适配 | `us-stock-analysis` | 美股基本面、估值、技术面、财报和机构定位 |
+| 问题标准化 | `stock-question-refiner` | 把自然语言问题转成可执行尽调任务 |
 | 深度尽调 | `stock-research-executor` | 八阶段机构式研究 |
-| 回测 | `backtesting-trading-strategies` | 策略历史验证与绩效指标 |
-| 风控否决 | `risk-manager` | 仓位、止损、集中度、对冲和风险预算 |
+| 回测 | `backtesting-trading-strategies` | 策略历史验证、偏差审计和样本外测试 |
+| 风控否决 | `risk-manager` | 仓位、止损、集中度、流动性和压力测试 |
 | 总控 | `stock-trading-master` | 路由、交叉验证、评分和红黄绿输出 |
 
-## 安装
+这些核心 Skill 已经直接保存在 `.claude/skills/`，克隆仓库后即可使用，不需要额外安装。
+
+## 可选上游增强
+
+仓库同时保留白名单安装器，用于同步第三方增强模块，例如 A股筛选、AkShare、财报日历、13F机构资金和期权分析。
 
 在本仓库根目录打开 PowerShell，执行：
 
@@ -27,7 +26,7 @@
 powershell -ExecutionPolicy Bypass -File ".\03_Wealth_Trading_搞钱与交易\StockTradingMaster\scripts\install_upstreams.ps1"
 ```
 
-安装器只访问白名单中的五个公开 GitHub 仓库，并把选定 Skill 镜像到：
+第三方 Skill 镜像到：
 
 ```text
 .claude/skills/vendor/
@@ -86,8 +85,14 @@ GREEN / YELLOW / RED / DATA_BLOCKED
 
 ## 关键文件
 
-- 总控 Skill：`.claude/skills/stock-trading-master/SKILL.md`
+- 总控：`.claude/skills/stock-trading-master/SKILL.md`
+- A股：`.claude/skills/a-share-analysis/SKILL.md`
+- 美股：`.claude/skills/us-stock-analysis/SKILL.md`
+- 问题标准化：`.claude/skills/stock-question-refiner/SKILL.md`
+- 深度尽调：`.claude/skills/stock-research-executor/SKILL.md`
+- 回测：`.claude/skills/backtesting-trading-strategies/SKILL.md`
+- 风控：`.claude/skills/risk-manager/SKILL.md`
 - 上游注册表：`.claude/skills/stock-trading-master/config/upstreams.json`
 - 统一报告格式：`.claude/skills/stock-trading-master/references/output-schema.md`
-- 安装脚本：`scripts/install_upstreams.ps1`
-- 来源与许可说明：`SOURCES.md`
+- 可选增强安装器：`scripts/install_upstreams.ps1`
+- 来源与许可：`SOURCES.md`
