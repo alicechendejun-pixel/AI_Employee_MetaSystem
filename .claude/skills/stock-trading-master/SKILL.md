@@ -1,20 +1,20 @@
 ---
 name: stock-trading-master
 description: Unified A-share, Hong Kong and US stock research, technical analysis, deep due diligence, backtesting and portfolio risk-control orchestrator. Use for individual-stock research, market comparisons, signal validation, trading plans, red-yellow-green ratings, event monitoring and post-trade review. This skill is analysis-first and must not place live orders unless a separately reviewed execution adapter is explicitly enabled.
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Stock Trading Master System
 
 ## Mission
 
-Convert a stock-related request into a traceable, evidence-based decision package by coordinating specialized upstream skills instead of relying on one model opinion.
+Convert a stock-related request into a traceable, evidence-based decision package by coordinating specialized market and research skills instead of relying on one model opinion.
 
 The system combines five layers:
 
-1. **Market adapter**: China A-share or US-stock specialist.
+1. **Market adapter**: China A-share, Hong Kong or US-stock specialist.
 2. **Institutional research**: eight-phase due diligence and source grading.
-3. **Technical and event analysis**: trend, levels, earnings and institutional-flow checks.
+3. **Technical and event analysis**: trend, levels, earnings and positioning checks.
 4. **Strategy validation**: historical backtest and robustness checks.
 5. **Risk governor**: position sizing, stop conditions, concentration and portfolio-risk vetoes.
 
@@ -25,8 +25,9 @@ The system combines five layers:
 - A trade idea is not approved merely because one module produces a bullish signal.
 - Missing, stale or contradictory data must downgrade confidence.
 - Always state the data timestamp and market session.
-- For A-shares, account for T+1, price limits, suspension risk, ST rules and liquidity.
-- For US stocks, account for extended hours, earnings gaps, options-implied volatility and currency exposure when relevant.
+- For A-shares, account for T+1, board-specific price limits, suspension risk, ST rules and liquidity.
+- For Hong Kong stocks, account for T+2 settlement, board lots and odd lots, Stock Connect eligibility, auction and VCM rules, stamp duty, cross-listing structure and liquidity.
+- For US stocks, account for T+1 settlement, extended hours, earnings gaps, options-implied volatility and currency exposure when relevant.
 
 ## Required Inputs
 
@@ -40,11 +41,15 @@ Infer what is available and ask only when execution would otherwise be materiall
 
 ## Routing Map
 
-Read `config/upstreams.json` for the canonical source registry.
+Read `config/upstreams.json` for the optional upstream source registry. Prefer the native skills in `.claude/skills/` for the core workflow.
 
 ### A-share
 
 Use `a-share-analysis` for market-specific fundamentals, technicals, policy impact, capital flow and trading rules. Add `a-share-screener` for candidate selection and `akshare` when structured China-market data access is needed. Then pass conclusions to the deep-research and risk layers.
+
+### Hong Kong stocks
+
+Use `hong-kong-stock-analysis` for HKEX-specific fundamentals, valuation, governance, board-lot and odd-lot liquidity, T+2 settlement, Stock Connect, AH/ADR or dual-listing comparisons, stamp-duty-aware return assumptions, corporate actions and market structure. Then pass conclusions to the deep-research, backtest and risk layers.
 
 ### US stocks
 
@@ -66,6 +71,8 @@ Use `stock-question-refiner` to normalize the question and `stock-research-execu
 ### Backtest
 
 Use `backtesting-trading-strategies` only after the trading rule is explicit. Reject tests with look-ahead bias, survivorship bias, insufficient sample size, unrealistic fills or unreported costs.
+
+For Hong Kong tests, include board lots, odd-lot execution, stamp duty, transaction levies, T+2 settlement assumptions, suspensions, corporate actions, Stock Connect eligibility where relevant and realistic liquidity.
 
 ### Risk governor
 
@@ -111,6 +118,7 @@ Check at minimum:
 - Price trend versus volume and breadth.
 - Thesis versus upcoming events that can falsify it.
 - Claimed edge versus backtest after costs.
+- For cross-listed securities, price and valuation differences after currency, conversion ratio, share class, liquidity and fungibility constraints.
 
 ### Stage 4 — Backtest gate
 
@@ -124,7 +132,7 @@ For rule-based signals, report:
 - CAGR or annualized return.
 - Maximum drawdown.
 - Sharpe or a clearly stated alternative.
-- Transaction costs and slippage assumptions.
+- Transaction costs, taxes and slippage assumptions.
 - In-sample and out-of-sample split.
 
 A strategy with strong in-sample results but weak out-of-sample results is `REJECTED`.
@@ -190,23 +198,25 @@ Every material factual claim needs a source and date. Clearly separate fact, inf
 ## Invocation Examples
 
 - `/stock-trading-master analyze 688010 福光股份 medium-term`
+- `/stock-trading-master analyze 00700 腾讯控股 medium-term market=Hong-Kong`
+- `/stock-trading-master compare 09988 BABA 6-12m cross-listing=true`
 - `/stock-trading-master compare NVDA AMD 6-12m`
 - `/stock-trading-master review-position 000625 cost=18.40`
-- `/stock-trading-master backtest "20-day breakout with ATR stop" universe=SP500`
+- `/stock-trading-master backtest "20-day breakout with ATR stop" universe=HSI`
 - `/stock-trading-master daily-signal market=A-share`
 
 ## Local Upstream Discovery
 
-The installer places upstream repositories under:
+The optional installer places upstream repositories under:
 
 `03_Wealth_Trading_搞钱与交易/StockTradingMaster/vendor/`
 
-Before using a module:
+Before using an optional module:
 
 1. Read its `SKILL.md`.
 2. Follow its own references only as needed.
 3. Record which upstream module contributed each conclusion.
-4. Fall back to this master workflow when an upstream module is unavailable.
+4. Fall back to the native market and research skills when an upstream module is unavailable.
 
 ## Non-Negotiable Output Requirements
 
