@@ -44,7 +44,7 @@ Read `config/upstreams.json` for the canonical source registry.
 
 ### A-share
 
-Use `china-stock-analysis` for market-specific screening, industry comparison and valuation. Use AkShare-compatible data sources when available. Then pass conclusions to the deep-research and risk layers.
+Use `a-share-analysis` for market-specific fundamentals, technicals, policy impact, capital flow and trading rules. Add `a-share-screener` for candidate selection and `akshare` when structured China-market data access is needed. Then pass conclusions to the deep-research and risk layers.
 
 ### US stocks
 
