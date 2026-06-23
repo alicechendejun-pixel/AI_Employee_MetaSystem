@@ -1,0 +1,4 @@
+[submodule ".claude/skills/ai-jian-koubo"]
+	path = .claude/skills/ai-jian-koubo
+	url = https://github.com/lcbuaaliu/ai-jian-koubo.git
+	branch = main
