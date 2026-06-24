@@ -1,3 +1,0 @@
-Managed upstream: https://github.com/obra/superpowers
-Locked version: v6.0.3
-Locked commit: 896224c4b1879920ab573417e68fd51d2ccc9072
