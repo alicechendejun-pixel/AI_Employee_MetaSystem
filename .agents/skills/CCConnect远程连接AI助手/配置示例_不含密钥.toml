@@ -1,0 +1,50 @@
+# CC-Connect 配置示例
+# 这是模板，不包含真实 Token、Secret、Cookie 或用户 ID。
+# 不要把真实 ~/.cc-connect/config.toml 提交到 GitHub。
+
+language = "zh"
+
+[log]
+level = "info"
+
+[[projects]]
+name = "my-project"
+admin_from = "YOUR_CHAT_USER_ID"
+
+[projects.agent]
+# 可选：claudecode / codex / cursor / gemini / opencode / qoder / iflow
+# 这里只是示例，按实际环境修改。
+type = "codex"
+
+[projects.agent.options]
+work_dir = "C:/path/to/your/project"
+# Codex 建议先使用 suggest；不要默认使用 yolo 或 full-auto。
+mode = "suggest"
+
+# 以下平台只保留一个实际使用的平台，其余删除。
+
+# 飞书示例
+# [[projects.platforms]]
+# type = "feishu"
+# [projects.platforms.options]
+# app_id = "YOUR_FEISHU_APP_ID"
+# app_secret = "YOUR_FEISHU_APP_SECRET"
+
+# Telegram 示例
+# [[projects.platforms]]
+# type = "telegram"
+# [projects.platforms.options]
+# token = "YOUR_TELEGRAM_BOT_TOKEN"
+
+# Slack 示例
+# [[projects.platforms]]
+# type = "slack"
+# [projects.platforms.options]
+# bot_token = "YOUR_SLACK_BOT_TOKEN"
+# app_token = "YOUR_SLACK_APP_TOKEN"
+
+# Discord 示例
+# [[projects.platforms]]
+# type = "discord"
+# [projects.platforms.options]
+# token = "YOUR_DISCORD_BOT_TOKEN"
