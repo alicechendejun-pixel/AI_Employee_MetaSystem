@@ -1,0 +1,24 @@
+interface:
+  display_name: "GEO文章AI友好化改造"
+  short_description: "把已有文章改写成更适合AI搜索理解和引用的Markdown，并输出评分、改造说明与补充清单"
+  default_prompt: "使用 $yao-geo-article-friendly 改造这篇已有文章或本地文章文件。保留原有观点，强化结构和证据，把未经支持的新增内容标记为建议补充，对原文和优化稿进行GEO加权评分，并返回完整文章、改造说明、待补充内容和风险提示。"
+compatibility:
+  canonical_format: "agent-skills"
+  adapter_targets:
+    - "openai"
+    - "claude"
+    - "generic"
+  activation:
+    mode: "manual"
+    paths: []
+  execution:
+    context: "inline"
+    shell: "bash"
+  trust:
+    source_tier: "local"
+    remote_inline_execution: "forbid"
+    remote_metadata_policy: "allow-metadata-only"
+  degradation:
+    openai: "metadata-adapter"
+    claude: "neutral-source-plus-adapter"
+    generic: "neutral-source"
