@@ -1,0 +1,19 @@
+{
+  "id": "yao-geo-article-friendly",
+  "中文名称": "GEO文章AI友好化改造",
+  "version": "0.1.0",
+  "family": "geo-content-production",
+  "maturity": "scaffold",
+  "status": "active",
+  "owner": "Yao Team",
+  "updated_at": "2026-06-27",
+  "requires_web": false,
+  "主要输出": [
+    "GEO优化后的文章",
+    "GEO评分报告",
+    "改造执行说明",
+    "待补充内容清单",
+    "风险提示"
+  ],
+  "entrypoint": "SKILL.md"
+}
